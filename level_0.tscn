@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjh0cevre1g5s"]
+[gd_scene load_steps=6 format=3 uid="uid://cjh0cevre1g5s"]
 
 [ext_resource type="Texture2D" uid="uid://7gu0xo0dvdfl" path="res://Assets/Tiles/Temp tiles/tileset.png" id="1_ttkot"]
 [ext_resource type="PackedScene" uid="uid://wwppebyk0cta" path="res://Actors/that_guy.tscn" id="2_4afel"]
+[ext_resource type="Texture2D" uid="uid://dctlhvwmpnarh" path="res://icon.svg" id="3_cmq7d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hmu24"]
 texture = ExtResource("1_ttkot")
@@ -116,3 +117,12 @@ layer_0/tile_data = PackedInt32Array(2228224, 262144, 0, 2293760, 262144, 1, 222
 
 [node name="That Guy" parent="." instance=ExtResource("2_4afel")]
 position = Vector2(112, 509)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Backround" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(386, 431)
+scale = Vector2(17.2363, 9.0332)
+texture = ExtResource("3_cmq7d")

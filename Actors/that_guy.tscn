@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=6 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
 [ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="1_eak7i"]
+[ext_resource type="Texture2D" uid="uid://bck4xy6mwj0v6" path="res://Assets/Candle guy/Pixelated_LightSourceV1.png" id="3_wgtml"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqgdr"]
 size = Vector2(11, 19.5)
@@ -36,3 +37,7 @@ sprite_frames = SubResource("SpriteFrames_cl32k")
 zoom = Vector2(0.9, 0.9)
 limit_right = 1151
 limit_bottom = 648
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+show_behind_parent = true
+texture = ExtResource("3_wgtml")

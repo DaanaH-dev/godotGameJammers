@@ -4,14 +4,20 @@ extends CharacterBody2D
 const MOVEMENT_SPEED = 400.0
 const JUMP_VELOCITY = -650.0
 const GRAVITY_MODIFYER =  4.0
-
-
+const finalLightScale = 0.2
+const lightTextureMultiplier = 30
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JUMP_RELEASED = false
 
+@onready var light2d = get_node("PointLight2D")
+
 
 func _physics_process(delta):
+	
+	#Calls the lighting around the character
+	baseLight(delta)
+	
 	
 	#Checks to see if the jump button is released
 	if Input.is_action_just_released("ui_accept"):
@@ -44,3 +50,18 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, MOVEMENT_SPEED)
 
 	move_and_slide()
+	
+#This function is what deals with the light around the character
+func baseLight(delta):
+	#This determeines what the light shrinks to
+	if Game.lightTime >= 0:
+		Game.lightTime -= delta
+	else:
+		pass
+	var newScale = Game.lightTime/Game.DEFAULTLIGHTTIME
+	if newScale < finalLightScale:
+		newScale = finalLightScale	
+	light2d.texture_scale = newScale * lightTextureMultiplier
+	
+		
+	
