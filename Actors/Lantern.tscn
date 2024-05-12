@@ -32,4 +32,5 @@ sprite_frames = SubResource("SpriteFrames_der6f")
 animation = &"On"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
 texture = ExtResource("4_4ikpf")

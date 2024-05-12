@@ -40,4 +40,5 @@ limit_bottom = 648
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 show_behind_parent = true
+blend_mode = 2
 texture = ExtResource("3_wgtml")
