@@ -61,7 +61,6 @@ func baseLight(delta):
 		Game.lightTime -= delta
 	else:
 		pass
-	print(Game.lightTime)
 	light2d.texture_scale = newScale * lightTextureMultiplier
 	
 		
