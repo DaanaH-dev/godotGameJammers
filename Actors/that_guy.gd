@@ -54,13 +54,14 @@ func _physics_process(delta):
 #This function is what deals with the light around the character
 func baseLight(delta):
 	#This determeines what the light shrinks to
-	if Game.lightTime >= 0:
+	
+	var newScale = Game.lightTime/Game.DEFAULTLIGHTTIME
+			
+	if newScale >= finalLightScale:
 		Game.lightTime -= delta
 	else:
 		pass
-	var newScale = Game.lightTime/Game.DEFAULTLIGHTTIME
-	if newScale < finalLightScale:
-		newScale = finalLightScale	
+	print(Game.lightTime)
 	light2d.texture_scale = newScale * lightTextureMultiplier
 	
 		
