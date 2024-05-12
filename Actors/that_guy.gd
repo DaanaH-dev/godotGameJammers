@@ -10,15 +10,20 @@ const lightTextureMultiplier = 30
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JUMP_RELEASED = false
 
-@onready var light2d = get_node("PointLight2D")
+@export var Flame : PackedScene
 
+@onready var light2d = get_node("PointLight2D")
+#@onready var main = 
+
+#var Cherry = preload("res://Collectibles/cherry.tscn")
 
 func _physics_process(delta):
 	
 	#Calls the lighting around the character
 	baseLight(delta)
 	
-	
+	if Input.is_action_just_pressed("Shoot"):
+		shoot()
 	#Checks to see if the jump button is released
 	if Input.is_action_just_released("ui_accept"):
 		JUMP_RELEASED = true
@@ -63,5 +68,9 @@ func baseLight(delta):
 		pass
 	light2d.texture_scale = newScale * lightTextureMultiplier
 	
-		
+func shoot():
+	var b = Flame.instantiate()
+	owner.add_child(b)
+	b.transform = $Candle_Wick.global_transform
+
 	
