@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6kads1wpyhqi"]
+
+[ext_resource type="Script" path="res://Actors/Collectables/Lantern.gd" id="1_oygxk"]
+[ext_resource type="Texture2D" uid="uid://cfkpqugerfmsv" path="res://Assets/Lantern/lantern_off.png" id="2_1oowb"]
+[ext_resource type="Texture2D" uid="uid://c0xhdgtq48jjy" path="res://Assets/Lantern/lantern_on.png" id="3_q86xm"]
+[ext_resource type="Texture2D" uid="uid://bck4xy6mwj0v6" path="res://Assets/Candle guy/Pixelated_LightSourceV1.png" id="4_4ikpf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_der6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1oowb")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_q86xm")
+}],
+"loop": true,
+"name": &"On",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5d38"]
+size = Vector2(17, 22)
+
+[node name="Lantern" type="Sprite2D"]
+script = ExtResource("1_oygxk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_der6f")
+animation = &"On"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
+texture = ExtResource("4_4ikpf")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_v5d38")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
