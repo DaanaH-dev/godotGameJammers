@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnsy2vgjweggv"]
+[gd_scene load_steps=6 format=3 uid="uid://bnsy2vgjweggv"]
 
 [ext_resource type="Texture2D" uid="uid://bvvuqblp5p4ar" path="res://Assets/Temp/Temp fire.png" id="1_ai570"]
 [ext_resource type="Script" path="res://Actors/fire_glob_v_2.gd" id="1_c0khr"]
+[ext_resource type="Texture2D" uid="uid://bck4xy6mwj0v6" path="res://Assets/Candle guy/Pixelated_LightSourceV1.png" id="3_t2rra"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_163l3"]
 radius = 3.58744
@@ -23,7 +24,6 @@ collision_mask = 2
 gravity_scale = 0.5
 can_sleep = false
 contact_monitor = true
-linear_velocity = Vector2(1000, 0)
 script = ExtResource("1_c0khr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -35,3 +35,8 @@ shape = SubResource("CircleShape2D_163l3")
 position = Vector2(0, -4)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_jwom2")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
+texture = ExtResource("3_t2rra")
+texture_scale = 10.0

@@ -71,6 +71,8 @@ func baseLight(delta):
 func shoot():
 	var b = Flame.instantiate()
 	owner.add_child(b)
-	b.transform = $Candle_Wick.global_transform
+	b.position = position + get_node("Candle_Wick").position
+	
+	#b.transform = $Candle_Wick.global_transform
 
 	
