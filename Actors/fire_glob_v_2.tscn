@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnsy2vgjweggv"]
+
+[ext_resource type="Texture2D" uid="uid://bvvuqblp5p4ar" path="res://Assets/Temp/Temp fire.png" id="1_ai570"]
+[ext_resource type="Script" path="res://Actors/fire_glob_v_2.gd" id="1_c0khr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_163l3"]
+radius = 3.58744
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwom2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ai570")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="fire_globV2" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.5
+can_sleep = false
+contact_monitor = true
+linear_velocity = Vector2(1000, 0)
+script = ExtResource("1_c0khr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(1.115, 1.115)
+shape = SubResource("CircleShape2D_163l3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jwom2")

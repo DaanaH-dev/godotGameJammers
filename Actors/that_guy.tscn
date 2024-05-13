@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=8 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
 [ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="1_eak7i"]
-[ext_resource type="PackedScene" uid="uid://cvyf87yyx2if6" path="res://Actors/fire_glob.tscn" id="2_nwxmd"]
+[ext_resource type="PackedScene" uid="uid://bnsy2vgjweggv" path="res://Actors/fire_glob_v_2.tscn" id="2_sgchl"]
 [ext_resource type="Texture2D" uid="uid://bck4xy6mwj0v6" path="res://Assets/Candle guy/Pixelated_LightSourceV1.png" id="3_wgtml"]
+[ext_resource type="Script" path="res://Actors/Candle_Wick.gd" id="5_3vfea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqgdr"]
 size = Vector2(11, 19.5)
@@ -21,7 +22,7 @@ animations = [{
 
 [node name="That Guy" type="CharacterBody2D"]
 script = ExtResource("1_1nhrw")
-Flame = ExtResource("2_nwxmd")
+Flame = ExtResource("2_sgchl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -47,4 +48,4 @@ texture = ExtResource("3_wgtml")
 
 [node name="Candle_Wick" type="Marker2D" parent="."]
 position = Vector2(-1, -23)
-rotation = -1.5708
+script = ExtResource("5_3vfea")
