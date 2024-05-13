@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjh0cevre1g5s"]
+[gd_scene load_steps=8 format=3 uid="uid://cjh0cevre1g5s"]
 
 [ext_resource type="Texture2D" uid="uid://7gu0xo0dvdfl" path="res://Assets/Tiles/Temp tiles/tileset.png" id="1_ttkot"]
 [ext_resource type="PackedScene" uid="uid://wwppebyk0cta" path="res://Actors/that_guy.tscn" id="2_4afel"]
 [ext_resource type="Texture2D" uid="uid://dctlhvwmpnarh" path="res://icon.svg" id="3_cmq7d"]
-[ext_resource type="PackedScene" uid="uid://c6kads1wpyhqi" path="res://Actors/Lantern.tscn" id="4_mvrkn"]
+[ext_resource type="PackedScene" uid="uid://c6kads1wpyhqi" path="res://Actors/Collectables/Lantern.tscn" id="4_mvrkn"]
+[ext_resource type="PackedScene" uid="uid://c5yxrnl4ksxfe" path="res://Actors/Collectables/light_collectable.tscn" id="5_v6xex"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hmu24"]
 texture = ExtResource("1_ttkot")
@@ -130,10 +131,18 @@ position = Vector2(386, 431)
 scale = Vector2(17.2363, 9.0332)
 texture = ExtResource("3_cmq7d")
 
-[node name="Lantern" parent="." instance=ExtResource("4_mvrkn")]
-position = Vector2(773, 339)
-
 [node name="Player" type="Node2D" parent="."]
 
 [node name="That Guy" parent="Player" instance=ExtResource("2_4afel")]
 position = Vector2(108.035, 509)
+
+[node name="Collectables" type="Node2D" parent="."]
+
+[node name="Lantern" parent="Collectables" instance=ExtResource("4_mvrkn")]
+position = Vector2(773, 339)
+
+[node name="LightCollectable" parent="." instance=ExtResource("5_v6xex")]
+position = Vector2(494, 286)
+
+[node name="LightCollectable2" parent="." instance=ExtResource("5_v6xex")]
+position = Vector2(1082, 511)

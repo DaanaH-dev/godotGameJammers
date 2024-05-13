@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=19 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
 [ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="1_eak7i"]
@@ -21,7 +21,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_jwpn0"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_8873h"]
+curve = SubResource("Curve_jwpn0")
 
 [sub_resource type="Curve" id="Curve_b405s"]
 min_value = -360.0

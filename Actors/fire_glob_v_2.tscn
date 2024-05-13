@@ -1,24 +1,61 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnsy2vgjweggv"]
+[gd_scene load_steps=13 format=3 uid="uid://bnsy2vgjweggv"]
 
 [ext_resource type="Texture2D" uid="uid://bvvuqblp5p4ar" path="res://Assets/Temp/Temp fire.png" id="1_ai570"]
 [ext_resource type="Script" path="res://Actors/fire_glob_v_2.gd" id="1_c0khr"]
 [ext_resource type="Texture2D" uid="uid://bck4xy6mwj0v6" path="res://Assets/Candle guy/Pixelated_LightSourceV1.png" id="3_t2rra"]
+[ext_resource type="Texture2D" uid="uid://dpksfo7vtns5v" path="res://Assets/Particles/white_square.png" id="4_hhnr3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_163l3"]
 radius = 3.58744
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jwom2"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"AfterContact",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_ai570")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Flying",
 "speed": 5.0
 }]
 
-[node name="fire_globV2" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ase4t"]
+radius = 5.0
+
+[sub_resource type="Gradient" id="Gradient_e8x7x"]
+offsets = PackedFloat32Array(0, 0.996805)
+colors = PackedColorArray(0.746424, 0.785793, 0.0823869, 1, 0.512159, 0, 0.0495803, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dw8u2"]
+gradient = SubResource("Gradient_e8x7x")
+
+[sub_resource type="Curve" id="Curve_0s8pd"]
+_data = [Vector2(0, 0.00517845), 0.0, 0.0, 0, 0, Vector2(0.0293255, 0.940161), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n7kc3"]
+curve = SubResource("Curve_0s8pd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jan5u"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 250.0
+initial_velocity_max = 250.0
+radial_velocity_min = 10.0
+radial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+linear_accel_curve = SubResource("CurveTexture_n7kc3")
+color_ramp = SubResource("GradientTexture1D_dw8u2")
+
+[node name="Fly" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.5
@@ -35,8 +72,28 @@ shape = SubResource("CircleShape2D_163l3")
 position = Vector2(0, -4)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_jwom2")
+animation = &"Flying"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2, -39)
 blend_mode = 2
 texture = ExtResource("3_t2rra")
 texture_scale = 10.0
+
+[node name="GroundDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetection"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_ase4t")
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+position = Vector2(0, -3)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_jan5u")
+texture = ExtResource("4_hhnr3")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="body_entered" from="GroundDetection" to="." method="_on_ground_detection_body_entered"]
