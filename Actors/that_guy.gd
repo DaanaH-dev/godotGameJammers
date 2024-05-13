@@ -13,6 +13,9 @@ var JUMP_RELEASED = false
 @export var Flame : PackedScene
 
 @onready var light2d = get_node("PointLight2D")
+@onready var fireEffect = get_node("GPUParticles2D").process_material
+
+var tanAccel = 50.0
 #@onready var main = 
 
 #var Cherry = preload("res://Collectibles/cherry.tscn")
@@ -51,9 +54,18 @@ func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * MOVEMENT_SPEED
+		
+		if direction >= 1:
+			movingRight()
+		elif direction <= -1:
+			movingLeft()
+		
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, MOVEMENT_SPEED)
-
+		
+		noMovement()
+	
 	move_and_slide()
 	
 #This function is what deals with the light around the character
@@ -73,6 +85,20 @@ func shoot():
 	owner.add_child(b)
 	b.position = position + get_node("Candle_Wick").position
 	
+	
 	#b.transform = $Candle_Wick.global_transform
+	
+	
 
+func movingRight():
+	fireEffect.tangential_accel_max = tanAccel
+	fireEffect.tangential_accel_min = tanAccel
+
+func movingLeft():
+	fireEffect.tangential_accel_max = -tanAccel
+	fireEffect.tangential_accel_min = -tanAccel
+
+func noMovement():
+	fireEffect.tangential_accel_max = 0
+	fireEffect.tangential_accel_min = 0 
 	

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=17 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
 [ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="1_eak7i"]
 [ext_resource type="PackedScene" uid="uid://bnsy2vgjweggv" path="res://Actors/fire_glob_v_2.tscn" id="2_sgchl"]
 [ext_resource type="Texture2D" uid="uid://bck4xy6mwj0v6" path="res://Assets/Candle guy/Pixelated_LightSourceV1.png" id="3_wgtml"]
 [ext_resource type="Script" path="res://Actors/Candle_Wick.gd" id="5_3vfea"]
+[ext_resource type="Texture2D" uid="uid://dpksfo7vtns5v" path="res://Assets/Particles/white_square.png" id="6_3c2xd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqgdr"]
 size = Vector2(11, 19.5)
@@ -19,6 +20,50 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Curve" id="Curve_b405s"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.642229, 214.591), 0.0, 0.0, 0, 0, Vector2(0.98827, -360), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0a7p4"]
+curve = SubResource("Curve_b405s")
+
+[sub_resource type="Gradient" id="Gradient_3amtw"]
+offsets = PackedFloat32Array(0, 0.720497, 0.993789)
+colors = PackedColorArray(0.839954, 0.396004, 0, 1, 0.474804, 0, 0, 1, 0.470769, 0.470266, 0.422397, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghy1w"]
+gradient = SubResource("Gradient_3amtw")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xrerp"]
+
+[sub_resource type="Curve" id="Curve_yhpse"]
+_data = [Vector2(0, 0.309444), 0.0, 0.0, 0, 0, Vector2(0.236948, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.265599), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g5tv2"]
+curve = SubResource("Curve_yhpse")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fy04d"]
+lifetime_randomness = 0.17
+particle_flag_disable_z = true
+angle_min = 360.0
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+angular_velocity_min = 306.66
+angular_velocity_max = 441.0
+angular_velocity_curve = SubResource("CurveTexture_0a7p4")
+directional_velocity_min = 0.0
+directional_velocity_max = 0.0
+directional_velocity_curve = SubResource("CurveXYZTexture_xrerp")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_g5tv2")
+color_ramp = SubResource("GradientTexture1D_ghy1w")
 
 [node name="That Guy" type="CharacterBody2D"]
 script = ExtResource("1_1nhrw")
@@ -49,3 +94,10 @@ texture = ExtResource("3_wgtml")
 [node name="Candle_Wick" type="Marker2D" parent="."]
 position = Vector2(-1, -23)
 script = ExtResource("5_3vfea")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-2, -22)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_fy04d")
+texture = ExtResource("6_3c2xd")
+lifetime = 0.5
