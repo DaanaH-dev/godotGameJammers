@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=18 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
 [ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="1_eak7i"]
@@ -21,6 +21,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CurveTexture" id="CurveTexture_8873h"]
+
 [sub_resource type="Curve" id="Curve_b405s"]
 min_value = -360.0
 max_value = 360.0
@@ -31,8 +33,8 @@ point_count = 3
 curve = SubResource("Curve_b405s")
 
 [sub_resource type="Gradient" id="Gradient_3amtw"]
-offsets = PackedFloat32Array(0, 0.720497, 0.993789)
-colors = PackedColorArray(0.839954, 0.396004, 0, 1, 0.474804, 0, 0, 1, 0.470769, 0.470266, 0.422397, 1)
+offsets = PackedFloat32Array(0, 0.239617, 1)
+colors = PackedColorArray(0.0506593, 0.160667, 0.572324, 1, 0.474804, 0, 0, 1, 0.721022, 0.344295, 0.0692978, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ghy1w"]
 gradient = SubResource("Gradient_3amtw")
@@ -51,17 +53,21 @@ lifetime_randomness = 0.17
 particle_flag_disable_z = true
 angle_min = 360.0
 angle_max = 360.0
+angle_curve = SubResource("CurveTexture_8873h")
 direction = Vector3(0, -1, 0)
 spread = 10.0
+flatness = 0.8
 initial_velocity_min = 15.0
 initial_velocity_max = 25.0
-angular_velocity_min = 306.66
-angular_velocity_max = 441.0
+angular_velocity_min = -91.17
+angular_velocity_max = 49.69
 angular_velocity_curve = SubResource("CurveTexture_0a7p4")
 directional_velocity_min = 0.0
 directional_velocity_max = 0.0
 directional_velocity_curve = SubResource("CurveXYZTexture_xrerp")
 gravity = Vector3(0, 0, 0)
+linear_accel_min = -50.0
+linear_accel_max = 50.0
 scale_curve = SubResource("CurveTexture_g5tv2")
 color_ramp = SubResource("GradientTexture1D_ghy1w")
 
@@ -96,7 +102,7 @@ position = Vector2(-1, -23)
 script = ExtResource("5_3vfea")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(-2, -22)
+position = Vector2(-2, -23)
 amount = 300
 process_material = SubResource("ParticleProcessMaterial_fy04d")
 texture = ExtResource("6_3c2xd")
