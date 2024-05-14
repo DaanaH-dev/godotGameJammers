@@ -17,7 +17,23 @@ animations = [{
 "texture": ExtResource("1_eak7i")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eak7i")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eak7i")
+}],
+"loop": true,
+"name": &"Run",
 "speed": 5.0
 }]
 
@@ -91,6 +107,7 @@ shape = SubResource("RectangleShape2D_rqgdr")
 position = Vector2(0, -14)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cl32k")
+animation = &"Death"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -104,8 +121,8 @@ show_behind_parent = true
 blend_mode = 2
 texture = ExtResource("3_wgtml")
 
-[node name="Candle_Wick" type="Marker2D" parent="."]
-position = Vector2(-1, -23)
+[node name="ShootingPoint" type="Marker2D" parent="."]
+position = Vector2(2, 0)
 script = ExtResource("5_3vfea")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

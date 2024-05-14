@@ -14,14 +14,17 @@ var JUMP_RELEASED = false
 
 @onready var light2d = get_node("PointLight2D")
 @onready var fireEffect = get_node("GPUParticles2D").process_material
-
+@onready var anim = $AnimatedSprite2D
 var tanAccel = 50.0
 #@onready var main = 
 
 #var Cherry = preload("res://Collectibles/cherry.tscn")
 
+func _ready():
+	anim.play("Idle")
+
 func _physics_process(delta):
-	
+	health(delta)
 	#Calls the lighting around the character
 	baseLight(delta)
 	
@@ -54,16 +57,19 @@ func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * MOVEMENT_SPEED
-		
+		anim.play("Run")
 		if direction >= 1:
+			anim.flip_h = false
 			movingRight()
 		elif direction <= -1:
+			anim.flip_h = true
 			movingLeft()
+			
 		
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0, MOVEMENT_SPEED)
-		
+		anim.play("Idle")
 		noMovement()
 	
 	move_and_slide()
@@ -83,12 +89,27 @@ func baseLight(delta):
 func shoot():
 	var b = Flame.instantiate()
 	owner.add_child(b)
-	b.position = position + get_node("Candle_Wick").position
+	b.position = position + get_node("ShootingPoint").position
 	
 	
 	#b.transform = $Candle_Wick.global_transform
 	
+
+func health(delta):
+	var newScale = Game.lightTime/Game.DEFAULTLIGHTTIME
+	if newScale <= finalLightScale:
+		if Game.timeToDie > 0:
+			Game.timeToDie -= delta
+		else:
+			Game.timeToDie = 0
 	
+	
+	#THis indicates when you die
+	if Game.timeToDie <= 0.0:
+		anim.play("Death")
+		print("YOUR DEAD")
+		#THEN SOME SORT OF DEATH SEQUENCE
+		
 
 func movingRight():
 	fireEffect.tangential_accel_max = tanAccel

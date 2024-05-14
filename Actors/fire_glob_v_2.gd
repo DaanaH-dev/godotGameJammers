@@ -27,14 +27,15 @@ func _process(delta):
 		
 
 func _on_ground_detection_body_entered(body):
-	if not stopMoving: 
-		contactEffect.set_emitting(true)
-	
-	stopMoving = true
+	if body.get_parent().name != "Player":
+		if not stopMoving: 
+			contactEffect.set_emitting(true)
 		
-	
-	if(animation != null):
-		animation.queue_free()
-	if($FireCollision != null):
-		$FireCollision.queue_free()
-	print("Frozen")
+		stopMoving = true
+			
+		
+		if(animation != null):
+			animation.queue_free()
+		if($FireCollision != null):
+			$FireCollision.queue_free()
+		
