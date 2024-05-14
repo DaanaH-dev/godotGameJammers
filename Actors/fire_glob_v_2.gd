@@ -25,19 +25,16 @@ func _process(delta):
 		set_freeze_enabled(true)
 		
 		
-	
-	
-	
-	
-
-
-
 
 func _on_ground_detection_body_entered(body):
+	if not stopMoving: 
+		contactEffect.set_emitting(true)
+	
 	stopMoving = true
-	contactEffect.set_emitting(true)
+		
+	
 	if(animation != null):
 		animation.queue_free()
-	if($CollisionShape2D != null):
-		$CollisionShape2D.queue_free()
+	if($FireCollision != null):
+		$FireCollision.queue_free()
 	print("Frozen")

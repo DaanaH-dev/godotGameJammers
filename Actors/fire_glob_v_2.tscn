@@ -63,7 +63,7 @@ can_sleep = false
 contact_monitor = true
 script = ExtResource("1_c0khr")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="FireCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 scale = Vector2(1.115, 1.115)
 shape = SubResource("CircleShape2D_163l3")
@@ -82,7 +82,7 @@ texture_scale = 10.0
 
 [node name="GroundDetection" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetection"]
+[node name="GroundCollision" type="CollisionShape2D" parent="GroundDetection"]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_ase4t")
 
