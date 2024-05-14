@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=64 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
 [ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="1_eak7i"]
@@ -572,32 +572,6 @@ linear_accel_max = 50.0
 scale_curve = SubResource("CurveTexture_t36vg")
 color_ramp = SubResource("GradientTexture1D_krivo")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_do4a8"]
-size = Vector2(30, 38)
-
-[sub_resource type="Gradient" id="Gradient_n37h5"]
-colors = PackedColorArray(0.404358, 0.620199, 7.70092e-07, 1, 0.539092, 0.53594, 9.62615e-07, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1xmqt"]
-gradient = SubResource("Gradient_n37h5")
-
-[sub_resource type="Curve" id="Curve_35kxo"]
-min_value = -200.0
-max_value = 200.0
-_data = [Vector2(0, 6.59341), 0.0, 0.0, 0, 0, Vector2(1, -68.1319), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_tfd8f"]
-curve = SubResource("Curve_35kxo")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kayex"]
-particle_flag_disable_z = true
-spread = 10.0
-gravity = Vector3(0, 0, 0)
-linear_accel_curve = SubResource("CurveTexture_tfd8f")
-color = Color(0.964706, 0.964706, 0.992157, 1)
-color_ramp = SubResource("GradientTexture1D_1xmqt")
-
 [node name="That Guy" type="CharacterBody2D"]
 script = ExtResource("1_1nhrw")
 Flame = ExtResource("2_sgchl")
@@ -638,18 +612,3 @@ amount = 300
 process_material = SubResource("ParticleProcessMaterial_fy04d")
 texture = ExtResource("6_3c2xd")
 lifetime = 0.5
-
-[node name="SafeDetection" type="Area2D" parent="."]
-
-[node name="safeSquare" type="CollisionShape2D" parent="SafeDetection"]
-shape = SubResource("RectangleShape2D_do4a8")
-
-[node name="WaxTrail" type="GPUParticles2D" parent="."]
-position = Vector2(0, 16)
-amount = 500
-process_material = SubResource("ParticleProcessMaterial_kayex")
-texture = ExtResource("6_3c2xd")
-lifetime = 5.0
-
-[connection signal="area_entered" from="SafeDetection" to="." method="_on_safe_detection_area_entered"]
-[connection signal="area_exited" from="SafeDetection" to="." method="_on_safe_detection_area_exited"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6kads1wpyhqi"]
+[gd_scene load_steps=19 format=3 uid="uid://c6kads1wpyhqi"]
 
 [ext_resource type="Script" path="res://Actors/Collectables/Lantern.gd" id="1_oygxk"]
 [ext_resource type="Texture2D" uid="uid://cfkpqugerfmsv" path="res://Assets/Lantern/lantern_off.png" id="2_1oowb"]
 [ext_resource type="Texture2D" uid="uid://c0xhdgtq48jjy" path="res://Assets/Lantern/lantern_on.png" id="3_q86xm"]
 [ext_resource type="Texture2D" uid="uid://bck4xy6mwj0v6" path="res://Assets/Candle guy/Pixelated_LightSourceV1.png" id="4_4ikpf"]
+[ext_resource type="Texture2D" uid="uid://dpksfo7vtns5v" path="res://Assets/Particles/white_square.png" id="5_hd55d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_der6f"]
 animations = [{
@@ -27,12 +28,71 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5d38"]
 size = Vector2(17, 22)
 
+[sub_resource type="Curve" id="Curve_xlybf"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8873h"]
+curve = SubResource("Curve_xlybf")
+
+[sub_resource type="Curve" id="Curve_gdkgl"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.642229, 214.591), 0.0, 0.0, 0, 0, Vector2(0.98827, -360), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0a7p4"]
+curve = SubResource("Curve_gdkgl")
+
+[sub_resource type="Gradient" id="Gradient_8h040"]
+offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.335404, 0.534162, 0.919255)
+colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 1, 0.797855, 0.701954, 1, 0.829586, 0.212915, 3.85046e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghy1w"]
+gradient = SubResource("Gradient_8h040")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xrerp"]
+
+[sub_resource type="Curve" id="Curve_5vq8r"]
+_data = [Vector2(0, 0.309444), 0.0, 0.0, 0, 0, Vector2(0.236948, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.265599), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g5tv2"]
+curve = SubResource("Curve_5vq8r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m41vp"]
+lifetime_randomness = 0.17
+particle_flag_disable_z = true
+angle_min = 360.0
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_8873h")
+direction = Vector3(0, -1, 0)
+spread = 3.36
+flatness = 0.445
+initial_velocity_max = 8.0
+angular_velocity_min = -91.17
+angular_velocity_max = 49.69
+angular_velocity_curve = SubResource("CurveTexture_0a7p4")
+directional_velocity_min = 0.0
+directional_velocity_max = 0.0
+directional_velocity_curve = SubResource("CurveXYZTexture_xrerp")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -50.0
+linear_accel_max = 50.0
+scale_curve = SubResource("CurveTexture_g5tv2")
+color_ramp = SubResource("GradientTexture1D_ghy1w")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvt4l"]
+radius = 218.002
+
 [node name="Lantern" type="Sprite2D"]
 script = ExtResource("1_oygxk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_der6f")
-animation = &"On"
+animation = &"Off"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 blend_mode = 2
@@ -41,7 +101,19 @@ texture = ExtResource("4_4ikpf")
 [node name="PlayerDetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
-position = Vector2(-0.5, 5)
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_v5d38")
+
+[node name="Fire" type="GPUParticles2D" parent="."]
+position = Vector2(0, 13)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_m41vp")
+texture = ExtResource("5_hd55d")
+lifetime = 0.5
+
+[node name="SafeZone" type="Area2D" parent="."]
+
+[node name="SafeCircle" type="CollisionShape2D" parent="SafeZone"]
+shape = SubResource("CircleShape2D_lvt4l")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

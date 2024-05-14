@@ -7,5 +7,7 @@ const DEFAULTLIGHTTIME := 15.0
 #stop decrementing once the final size of the light is reached
 var lightTime := DEFAULTLIGHTTIME
 
-var timeToDie := 10.0
+
+const DEFAULTTIMETODIE := 10.0
+var timeToDie := DEFAULTTIMETODIE
 
