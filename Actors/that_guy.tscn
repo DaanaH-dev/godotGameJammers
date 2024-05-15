@@ -611,7 +611,7 @@ position = Vector2(2, 4)
 script = ExtResource("5_3vfea")
 
 [node name="Fire" type="GPUParticles2D" parent="."]
-position = Vector2(-2, -17)
+position = Vector2(2, -8)
 amount = 300
 process_material = ExtResource("11_wc1ug")
 texture = ExtResource("6_3c2xd")
@@ -630,3 +630,4 @@ shape = SubResource("RectangleShape2D_886gt")
 [connection signal="area_entered" from="SafeDetection" to="." method="_on_safe_detection_area_entered"]
 [connection signal="area_exited" from="SafeDetection" to="." method="_on_safe_detection_area_exited"]
 [connection signal="area_entered" from="DangerDetection" to="." method="_on_danger_detection_area_entered"]
+[connection signal="area_exited" from="DangerDetection" to="." method="_on_danger_detection_area_exited"]

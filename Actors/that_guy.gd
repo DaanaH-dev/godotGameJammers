@@ -22,6 +22,14 @@ var timeToShoot = 0.0
 var shotReleased = true
 
 
+var slidingFirePosition = Vector2(2,-8)
+var standingFirePosition = Vector2(-2,-17)
+
+
+const DEFAULTWATERBUFFER = 0.2
+var waterBuffer = 0.0
+
+
 #A variable that is set to true when you are in the lanterns safe area
 var safe = false
 
@@ -46,11 +54,32 @@ func _ready():
 
 func _physics_process(delta):
 	
+	if sliding:
+		$Fire.position = slidingFirePosition
+	else:
+		$Fire.position = standingFirePosition
+	
 	
 	if Input.is_action_just_pressed("Restart"):
 		get_tree().change_scene_to_file(Game.currentScene)
 		Game.lightTime = Game.DEFAULTLIGHTTIME
 		Game.timeToDie = Game.DEFAULTTIMETODIE
+		
+	#Uncomment following if, if we want water to just kill, no sliding on water
+	#if inWater:
+		#Game.timeToDie = 0.0
+	
+	if inWater and sliding:
+		waterBuffer = DEFAULTWATERBUFFER
+	elif not sliding and waterBuffer > 0.0:
+		waterBuffer -= delta
+	else:
+		waterBuffer = 0.0
+		
+	if inWater and waterBuffer == 0.0:
+		Game.timeToDie = 0.0
+		
+		
 	
 	health(delta)
 	#Calls the lighting around the character
@@ -92,11 +121,14 @@ func _physics_process(delta):
 	
 	#Applies gravity to character whilst in the air
 	if not is_on_floor():
-		if not inWater:
-			velocity.y += (gravity * delta) * 2.3
-		else:
-			
+		if inWater and sliding:
+			velocity.y = 0			
+		elif inWater:
 			velocity.y = 15 
+		else:
+			velocity.y += (gravity * delta) * 2.3
+		
+			
 			
 		#print(gravity)
 	if not dead:
@@ -111,7 +143,8 @@ func _physics_process(delta):
 			JUMP_RELEASED = false
 			
 		# Handle jump.
-		if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not JUMP_RELEASED:
+		var canJump = is_on_floor() or (sliding and inWater)
+		if Input.is_action_just_pressed("ui_accept") and canJump and not JUMP_RELEASED:
 			velocity.y = JUMP_VELOCITY
 			sliding = false
 			
@@ -263,4 +296,10 @@ func _on_safe_detection_area_exited(area):
 func _on_danger_detection_area_entered(area):
 	if area.name == "WaterZone":
 		inWater = true
-		Game.timeToDie = 0.0
+
+
+
+func _on_danger_detection_area_exited(area):
+	if area.name == "WaterZone":
+		inWater = false
+		
