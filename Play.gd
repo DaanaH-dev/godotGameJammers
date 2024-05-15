@@ -5,4 +5,4 @@ extends Button
 
 
 func _on_pressed():
-	get_tree().change_scene_to_file("res://level_0.tscn")
+	get_tree().change_scene_to_file("res://level_1.tscn")

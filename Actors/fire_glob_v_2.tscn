@@ -78,7 +78,7 @@ animation = &"Flying"
 position = Vector2(2, -39)
 blend_mode = 2
 texture = ExtResource("3_t2rra")
-texture_scale = 10.0
+texture_scale = 15.0
 
 [node name="GroundDetection" type="Area2D" parent="."]
 

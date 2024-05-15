@@ -5,13 +5,13 @@ const MOVEMENT_SPEED = 400.0
 const JUMP_VELOCITY = -650.0
 const GRAVITY_MODIFYER =  4.0
 const finalLightScale = 0.2
-const lightTextureMultiplier = 30
+const lightTextureMultiplier = 15
 const shootAnimTime = 1.3
 
 const SLIDING_SPEED = 600.0
 const slideFriction = 1
-const slideScaleY = 1
-const slideScaleX = 4
+const slideScaleY = 1.6
+const slideScaleX = 3
 var slideLength = 2.0
 var timeTillStop = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -33,9 +33,10 @@ var safe = false
 @onready var anim = $AnimationPlayer
 @onready var animSprite = $AnimatedSprite2D
 @onready var hitBox = $CollisionShape2D
-@onready var waxTrail = $WaxTrail
+
 var tanAccel = 50.0
 var sliding = false
+var inWater = false
 #@onready var main = 
 
 #var Cherry = preload("res://Collectibles/cherry.tscn")
@@ -44,6 +45,12 @@ func _ready():
 	anim.play("Idle")
 
 func _physics_process(delta):
+	
+	
+	if Input.is_action_just_pressed("Restart"):
+		get_tree().change_scene_to_file(Game.currentScene)
+		Game.lightTime = Game.DEFAULTLIGHTTIME
+		Game.timeToDie = Game.DEFAULTTIMETODIE
 	
 	health(delta)
 	#Calls the lighting around the character
@@ -61,14 +68,11 @@ func _physics_process(delta):
 	
 	if sliding:
 		
-		animSprite.scale.y = slideScaleY
-		animSprite.scale.x = slideScaleX
 		hitBox.scale.y = slideScaleY
 		hitBox.scale.x = slideScaleX
 		set_floor_stop_on_slope_enabled(false)
 	else:
-		animSprite.scale.y = 2
-		animSprite.scale.x = 2
+		
 		hitBox.scale.y = 2
 		hitBox.scale.x = 2
 		set_floor_stop_on_slope_enabled(true)
@@ -88,12 +92,18 @@ func _physics_process(delta):
 	
 	#Applies gravity to character whilst in the air
 	if not is_on_floor():
-		velocity.y += (gravity * delta) * 2.3
+		if not inWater:
+			velocity.y += (gravity * delta) * 2.3
+		else:
+			
+			velocity.y = 15 
+			
 		#print(gravity)
 	if not dead:
 		if Input.is_action_just_pressed("Shoot"):
-			timeToShoot = shootAnimTime
-			shotReleased = false
+			if not sliding:
+				timeToShoot = shootAnimTime
+				shotReleased = false
 		#Checks to see if the jump button is released
 		if Input.is_action_just_released("ui_accept"):
 			JUMP_RELEASED = true
@@ -153,16 +163,20 @@ func _physics_process(delta):
 	
 		#Determines which animatin to play
 		if timeToShoot <= 0:
-			if velocity.y == 0:
-				if velocity.x != 0:
-					anim.play("Run")
-				else:
-					anim.play("Idle")
+			if sliding:
+				anim.play("Slide")
 			else:
-				if velocity.y > 0: 
-					anim.play("Jump")
-				elif velocity.y < 0:
-					anim.play("Fall")
+				if velocity.y == 0:
+					if velocity.x != 0:
+						anim.play("Run")
+					else:
+						anim.play("Idle")
+				else:
+					
+					if velocity.y > 0: 
+						anim.play("Jump")
+					elif velocity.y < 0:
+						anim.play("Fall")
 		else:
 			anim.play("Shoot")
 			
@@ -244,3 +258,9 @@ func _on_safe_detection_area_entered(area):
 func _on_safe_detection_area_exited(area):
 	if area.name == "SafeZone":
 		safe = false
+
+
+func _on_danger_detection_area_entered(area):
+	if area.name == "WaterZone":
+		inWater = true
+		Game.timeToDie = 0.0
