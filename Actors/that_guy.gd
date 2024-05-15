@@ -183,6 +183,7 @@ func baseLight(delta):
 	var newScale = Game.lightTime/Game.DEFAULTLIGHTTIME
 	if not safe:		
 		if newScale >= finalLightScale:
+			
 			Game.lightTime -= delta
 		else:
 			pass
@@ -203,6 +204,14 @@ func health(delta):
 	var newScale = Game.lightTime/Game.DEFAULTLIGHTTIME
 	
 	if newScale <= finalLightScale and not safe:
+		if Game.timeToDie >= 12:
+			$Fire.set_process_material(load("res://Assets/Particles/fire_full.tres"))
+		elif Game.timeToDie < 12:
+			$Fire.set_process_material(load("res://Assets/Particles/fire_75per.tres"))
+		elif Game.timeToDie < 9: 
+			$Fire.set_process_material(load("res://Assets/Particles/fire_50per.tres"))
+		elif Game.timeToDie < 6: 
+			$Fire.set_process_material(load("res://Assets/Particles/fire_almost_deadr.tres"))
 		if Game.timeToDie > 0:
 			Game.timeToDie -= delta
 		else:

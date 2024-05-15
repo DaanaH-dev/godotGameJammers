@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=61 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
 [ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="1_eak7i"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dpksfo7vtns5v" path="res://Assets/Particles/white_square.png" id="6_3c2xd"]
 [ext_resource type="Texture2D" uid="uid://dcw1603yhpn3k" path="res://Assets/Candle guy/candlerun.png" id="6_u02wg"]
 [ext_resource type="Texture2D" uid="uid://dlt2lf6vphk3j" path="res://Assets/Candle guy/candleshoot2.png" id="8_aolxm"]
+[ext_resource type="Material" uid="uid://ctptvx476yjef" path="res://Assets/Particles/fire_full.tres" id="11_wc1ug"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5j62"]
 radius = 5.0
@@ -275,8 +276,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_bcxi8"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_n5tmm"]
+resource_name = "Death"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -287,7 +289,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Run"]
+"values": [&"Death"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -296,68 +298,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_tfdi7"]
-resource_name = "Run"
-length = 3.0
-step = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Run"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_elooq"]
-resource_name = "Jump"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Jump"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_gqv0d"]
@@ -389,6 +333,119 @@ tracks/1/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_cbrey"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_elooq"]
+resource_name = "Jump"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Jump"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bcxi8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tfdi7"]
+resource_name = "Run"
+length = 0.9
+step = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="Animation" id="Animation_b5eja"]
 resource_name = "Shoot"
 length = 1.3
@@ -416,62 +473,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-}
-
-[sub_resource type="Animation" id="Animation_n5tmm"]
-resource_name = "Death"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Death"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_cbrey"]
-resource_name = "Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Idle"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_jwl7c"]
@@ -514,63 +515,6 @@ _data = {
 "Shoot": SubResource("Animation_b5eja"),
 "deadSad": SubResource("Animation_jwl7c")
 }
-
-[sub_resource type="Curve" id="Curve_jwpn0"]
-min_value = -360.0
-max_value = 360.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_fiyx1"]
-curve = SubResource("Curve_jwpn0")
-
-[sub_resource type="Curve" id="Curve_b405s"]
-min_value = -360.0
-max_value = 360.0
-_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.642229, 214.591), 0.0, 0.0, 0, 0, Vector2(0.98827, -360), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_n24mj"]
-curve = SubResource("Curve_b405s")
-
-[sub_resource type="Gradient" id="Gradient_3amtw"]
-offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.335404, 0.534162, 0.919255)
-colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 1, 0.797855, 0.701954, 1, 0.829586, 0.212915, 3.85046e-07, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_krivo"]
-gradient = SubResource("Gradient_3amtw")
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_gxutn"]
-
-[sub_resource type="Curve" id="Curve_yhpse"]
-_data = [Vector2(0, 0.309444), 0.0, 0.0, 0, 0, Vector2(0.236948, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.265599), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_t36vg"]
-curve = SubResource("Curve_yhpse")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fy04d"]
-lifetime_randomness = 0.17
-particle_flag_disable_z = true
-angle_min = 360.0
-angle_max = 360.0
-angle_curve = SubResource("CurveTexture_fiyx1")
-direction = Vector3(0, -1, 0)
-spread = 10.0
-flatness = 0.8
-initial_velocity_min = 15.0
-initial_velocity_max = 25.0
-angular_velocity_min = -91.17
-angular_velocity_max = 49.69
-angular_velocity_curve = SubResource("CurveTexture_n24mj")
-directional_velocity_min = 0.0
-directional_velocity_max = 0.0
-directional_velocity_curve = SubResource("CurveXYZTexture_gxutn")
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -50.0
-linear_accel_max = 50.0
-scale_curve = SubResource("CurveTexture_t36vg")
-color_ramp = SubResource("GradientTexture1D_krivo")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_do4a8"]
 size = Vector2(30, 38)
@@ -619,7 +563,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.9, 0.9)
+zoom = Vector2(1.1, 1.1)
 limit_right = 1151
 limit_bottom = 648
 
@@ -635,7 +579,7 @@ script = ExtResource("5_3vfea")
 [node name="Fire" type="GPUParticles2D" parent="."]
 position = Vector2(-2, -17)
 amount = 300
-process_material = SubResource("ParticleProcessMaterial_fy04d")
+process_material = ExtResource("11_wc1ug")
 texture = ExtResource("6_3c2xd")
 lifetime = 0.5
 

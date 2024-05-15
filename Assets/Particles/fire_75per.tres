@@ -1,0 +1,58 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=10 format=3 uid="uid://cdl8nf3ucehp"]
+
+[sub_resource type="Curve" id="Curve_jwpn0"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fiyx1"]
+curve = SubResource("Curve_jwpn0")
+
+[sub_resource type="Curve" id="Curve_b405s"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.642229, 214.591), 0.0, 0.0, 0, 0, Vector2(0.98827, -360), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n24mj"]
+curve = SubResource("Curve_b405s")
+
+[sub_resource type="Gradient" id="Gradient_3amtw"]
+offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.335404, 0.440994, 0.658385, 0.776398)
+colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 1, 0.797855, 0.701954, 1, 0.829586, 0.212915, 3.85046e-07, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_krivo"]
+gradient = SubResource("Gradient_3amtw")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_gxutn"]
+
+[sub_resource type="Curve" id="Curve_yhpse"]
+_data = [Vector2(0, 0.309444), 0.0, 0.0, 0, 0, Vector2(0.236948, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.265599), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_t36vg"]
+curve = SubResource("Curve_yhpse")
+
+[resource]
+lifetime_randomness = 0.17
+particle_flag_disable_z = true
+angle_min = 360.0
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_fiyx1")
+direction = Vector3(0, -1, 0)
+spread = 5.0
+flatness = 1.0
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+angular_velocity_min = -91.17
+angular_velocity_max = 720.0
+angular_velocity_curve = SubResource("CurveTexture_n24mj")
+directional_velocity_min = 0.0
+directional_velocity_max = 0.0
+directional_velocity_curve = SubResource("CurveXYZTexture_gxutn")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -50.0
+linear_accel_max = 50.0
+scale_curve = SubResource("CurveTexture_t36vg")
+color_ramp = SubResource("GradientTexture1D_krivo")
