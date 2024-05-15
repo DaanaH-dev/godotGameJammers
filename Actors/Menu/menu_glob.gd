@@ -13,7 +13,7 @@ func _ready():
 	set_lock_rotation_enabled(true)
 	set_gravity_scale(gravityScale)
 	var force = Vector2.ZERO 
-	var direction = (get_global_mouse_position() - player.global_position).normalized()
+	var direction = Vector2(1,-0.36)
 	
 	force = speed * direction
 	apply_central_impulse(force)

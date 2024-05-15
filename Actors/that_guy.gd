@@ -57,14 +57,7 @@ func _physics_process(delta):
 			timeTillStop = 0
 			sliding = false
 	
-	#Controls the wax trail
-	if not dead:
-		if is_on_floor() and sliding:
-			pass
-			waxTrail.set_emitting(true)
-		else:
-			waxTrail.set_emitting(false)
-		
+	
 	
 	if sliding:
 		
