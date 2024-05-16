@@ -21,6 +21,7 @@ Game="*res://Globals/Game.gd"
 
 [display]
 
+window/size/viewport_width=1151
 window/stretch/mode="viewport"
 
 [editor]

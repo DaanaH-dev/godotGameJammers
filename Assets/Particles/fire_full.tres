@@ -1,4 +1,4 @@
-[gd_resource type="ParticleProcessMaterial" load_steps=10 format=3 uid="uid://ctptvx476yjef"]
+[gd_resource type="ParticleProcessMaterial" load_steps=11 format=3 uid="uid://ctptvx476yjef"]
 
 [sub_resource type="Curve" id="Curve_jwpn0"]
 min_value = -360.0
@@ -19,13 +19,18 @@ point_count = 3
 curve = SubResource("Curve_b405s")
 
 [sub_resource type="Gradient" id="Gradient_3amtw"]
-offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.453416, 0.84472)
-colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 0.829586, 0.212915, 3.85046e-07, 1)
+offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.453416, 0.795031, 0.993789)
+colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 0.829586, 0.212915, 3.85046e-07, 1, 0.458904, 0.473782, 0.474074, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_krivo"]
 gradient = SubResource("Gradient_3amtw")
 
+[sub_resource type="Curve" id="Curve_pughw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.994709, 0.010989), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_gxutn"]
+curve_y = SubResource("Curve_pughw")
 
 [sub_resource type="Curve" id="Curve_yhpse"]
 _data = [Vector2(0, 0.309444), 0.0, 0.0, 0, 0, Vector2(0.236948, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.265599), 0.0, 0.0, 0, 0]
@@ -43,8 +48,8 @@ angle_curve = SubResource("CurveTexture_fiyx1")
 direction = Vector3(0, -1, 0)
 spread = 10.0
 flatness = 0.8
-initial_velocity_min = 15.0
-initial_velocity_max = 25.0
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
 angular_velocity_min = -91.17
 angular_velocity_max = 49.69
 angular_velocity_curve = SubResource("CurveTexture_n24mj")

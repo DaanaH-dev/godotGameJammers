@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://c6kads1wpyhqi"]
 
-[ext_resource type="Script" path="res://Actors/Collectables/Lantern.gd" id="1_oygxk"]
+[ext_resource type="Script" path="res://LevelBuilding/Collectables/Lantern.gd" id="1_oygxk"]
 [ext_resource type="Texture2D" uid="uid://do8tj0ast4jqs" path="res://Assets/Lantern/LanternV2Simple.png" id="2_pdn3q"]
 [ext_resource type="Texture2D" uid="uid://c0xhdgtq48jjy" path="res://Assets/Lantern/lantern_on.png" id="3_q86xm"]
 [ext_resource type="Texture2D" uid="uid://cudl5aavi8iyu" path="res://Assets/Particles/Pixelated_LightSourceV1-warm.png" id="4_b1el8"]
@@ -34,7 +34,7 @@ max_value = 360.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8873h"]
+[sub_resource type="CurveTexture" id="CurveTexture_mixm1"]
 curve = SubResource("Curve_xlybf")
 
 [sub_resource type="Curve" id="Curve_gdkgl"]
@@ -43,23 +43,23 @@ max_value = 360.0
 _data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.642229, 214.591), 0.0, 0.0, 0, 0, Vector2(0.98827, -360), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_0a7p4"]
+[sub_resource type="CurveTexture" id="CurveTexture_xswvy"]
 curve = SubResource("Curve_gdkgl")
 
 [sub_resource type="Gradient" id="Gradient_8h040"]
 offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.335404, 0.534162, 0.919255)
 colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 1, 0.797855, 0.701954, 1, 0.829586, 0.212915, 3.85046e-07, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghy1w"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0c2q1"]
 gradient = SubResource("Gradient_8h040")
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xrerp"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_dotag"]
 
 [sub_resource type="Curve" id="Curve_5vq8r"]
 _data = [Vector2(0, 0.309444), 0.0, 0.0, 0, 0, Vector2(0.236948, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.265599), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_g5tv2"]
+[sub_resource type="CurveTexture" id="CurveTexture_unxf0"]
 curve = SubResource("Curve_5vq8r")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m41vp"]
@@ -67,7 +67,7 @@ lifetime_randomness = 0.17
 particle_flag_disable_z = true
 angle_min = 360.0
 angle_max = 360.0
-angle_curve = SubResource("CurveTexture_8873h")
+angle_curve = SubResource("CurveTexture_mixm1")
 direction = Vector3(0, -1, 0)
 spread = 0.0
 flatness = 0.148
@@ -75,17 +75,17 @@ initial_velocity_min = 5.0
 initial_velocity_max = 8.0
 angular_velocity_min = 20.0
 angular_velocity_max = 20.0
-angular_velocity_curve = SubResource("CurveTexture_0a7p4")
+angular_velocity_curve = SubResource("CurveTexture_xswvy")
 directional_velocity_min = 0.0
 directional_velocity_max = 0.0
-directional_velocity_curve = SubResource("CurveXYZTexture_xrerp")
+directional_velocity_curve = SubResource("CurveXYZTexture_dotag")
 gravity = Vector3(0, 0, 0)
 linear_accel_min = -50.0
 linear_accel_max = 50.0
 scale_min = 0.5
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_g5tv2")
-color_ramp = SubResource("GradientTexture1D_ghy1w")
+scale_curve = SubResource("CurveTexture_unxf0")
+color_ramp = SubResource("GradientTexture1D_0c2q1")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lvt4l"]
 radius = 218.002

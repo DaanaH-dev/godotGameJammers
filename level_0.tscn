@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://wwppebyk0cta" path="res://Actors/that_guy.tscn" id="2_4afel"]
 [ext_resource type="Texture2D" uid="uid://hvaq2vejmtt2" path="res://Assets/Tiles/tile.png" id="2_d8axu"]
 [ext_resource type="Texture2D" uid="uid://dctlhvwmpnarh" path="res://icon.svg" id="3_cmq7d"]
-[ext_resource type="PackedScene" uid="uid://c6kads1wpyhqi" path="res://Actors/Collectables/Lantern.tscn" id="4_mvrkn"]
-[ext_resource type="PackedScene" uid="uid://c5yxrnl4ksxfe" path="res://Actors/Collectables/light_collectable.tscn" id="5_v6xex"]
+[ext_resource type="PackedScene" uid="uid://c6kads1wpyhqi" path="res://LevelBuilding/Collectables/Lantern.tscn" id="4_mvrkn"]
+[ext_resource type="PackedScene" uid="uid://c5yxrnl4ksxfe" path="res://LevelBuilding/Collectables/light_collectable.tscn" id="5_v6xex"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hmu24"]
 texture = ExtResource("1_ttkot")

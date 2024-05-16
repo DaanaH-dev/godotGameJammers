@@ -630,8 +630,10 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
-limit_right = 1151
-limit_bottom = 648
+limit_left = -10000
+limit_top = -10000
+limit_right = 10000
+limit_bottom = 900
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 show_behind_parent = true

@@ -7,6 +7,14 @@ var stopMoving = false
 @onready var groundCollision = $GroundDetection
 @onready var contactEffect = $Explosion
 @onready var animation = $AnimatedSprite2D
+
+const LIGHTMULTIPLIER = 15
+
+const TIMETOSHRINK = 1.5
+
+var timeBeforeDespawn = 5.0
+
+var newScale
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation.play("Flying")
@@ -21,9 +29,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#position += transform.x	
+	#position += transform.x
+	
+	newScale = LIGHTMULTIPLIER
 	if stopMoving == true:
 		set_freeze_enabled(true)
+		timeBeforeDespawn -= delta
+		
+		if timeBeforeDespawn <= TIMETOSHRINK:
+			newScale = (timeBeforeDespawn/TIMETOSHRINK) * LIGHTMULTIPLIER
+			
+	
+	$PointLight2D.texture_scale = newScale
+	
+	if timeBeforeDespawn <= 0 :
+		self.queue_free()
+	
 		
 		
 

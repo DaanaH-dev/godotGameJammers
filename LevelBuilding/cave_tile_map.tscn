@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc0rue3ryy421"]
+[gd_scene load_steps=8 format=3 uid="uid://bc0rue3ryy421"]
 
 [ext_resource type="Texture2D" uid="uid://cggu0wj37d17c" path="res://Assets/Tiles/caveTiles.png" id="1_kw3bq"]
+[ext_resource type="Texture2D" uid="uid://dej5g5cnh87qo" path="res://Assets/Tiles/mudtile.png" id="2_efoms"]
+[ext_resource type="Texture2D" uid="uid://b0ijma8t5paew" path="res://Assets/Tiles/mudtile1.png" id="3_7qjgv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8aihl"]
 texture = ExtResource("1_kw3bq")
@@ -340,9 +342,41 @@ texture = ExtResource("1_kw3bq")
 0:12/0/physics_layer_0/angular_velocity = 0.0
 0:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.125, -8, -4)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3qxin"]
+texture = ExtResource("2_efoms")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gkktt"]
+texture = ExtResource("3_7qjgv")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSet" id="TileSet_i5cvm"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_8aihl")
+sources/2 = SubResource("TileSetAtlasSource_3qxin")
+sources/3 = SubResource("TileSetAtlasSource_gkktt")
 
 [node name="caveTileMap" type="TileMap"]
 tile_set = SubResource("TileSet_i5cvm")
