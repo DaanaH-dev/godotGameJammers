@@ -1,13 +1,13 @@
-[gd_scene load_steps=62 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=67 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
-[ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="1_eak7i"]
 [ext_resource type="PackedScene" uid="uid://bnsy2vgjweggv" path="res://Actors/fire_glob_v_2.tscn" id="2_sgchl"]
 [ext_resource type="Texture2D" uid="uid://dwwiavsc2p3fe" path="res://Assets/Candle guy/candledeath.png" id="3_hmg1x"]
 [ext_resource type="Texture2D" uid="uid://bck4xy6mwj0v6" path="res://Assets/Candle guy/Pixelated_LightSourceV1.png" id="3_wgtml"]
 [ext_resource type="Texture2D" uid="uid://hb2diremitrk" path="res://Assets/Candle guy/candlefall.png" id="4_ncgd0"]
 [ext_resource type="Texture2D" uid="uid://ph7udbob8mur" path="res://Assets/Candle guy/candlejump.png" id="5_2gbgw"]
 [ext_resource type="Script" path="res://Actors/Candle_Wick.gd" id="5_3vfea"]
+[ext_resource type="Texture2D" uid="uid://d171351x54ylo" path="res://Assets/Candle guy/candleidle.png" id="5_n5210"]
 [ext_resource type="Texture2D" uid="uid://dpksfo7vtns5v" path="res://Assets/Particles/white_square.png" id="6_3c2xd"]
 [ext_resource type="Texture2D" uid="uid://dcw1603yhpn3k" path="res://Assets/Candle guy/candlerun.png" id="6_u02wg"]
 [ext_resource type="Texture2D" uid="uid://dlt2lf6vphk3j" path="res://Assets/Candle guy/candleshoot2.png" id="8_aolxm"]
@@ -77,6 +77,26 @@ region = Rect2(416, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mutyd"]
 atlas = ExtResource("3_hmg1x")
 region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xg63"]
+atlas = ExtResource("5_n5210")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u53ix"]
+atlas = ExtResource("5_n5210")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in8uo"]
+atlas = ExtResource("5_n5210")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxfc3"]
+atlas = ExtResource("5_n5210")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juswm"]
+atlas = ExtResource("5_n5210")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixph4"]
 atlas = ExtResource("6_u02wg")
@@ -216,7 +236,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_eak7i")
+"texture": SubResource("AtlasTexture_7xg63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u53ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in8uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxfc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juswm")
 }],
 "loop": true,
 "name": &"Idle",
@@ -382,10 +414,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_elooq"]

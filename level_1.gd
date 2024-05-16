@@ -9,3 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_backround_music_1_finished():
+	$BackroundMusic1.play(0.0)

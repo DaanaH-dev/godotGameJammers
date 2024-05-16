@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsay275u1m2ju"]
+[gd_scene load_steps=10 format=3 uid="uid://bsay275u1m2ju"]
 
 [ext_resource type="Script" path="res://level_1.gd" id="1_hdjqq"]
 [ext_resource type="PackedScene" uid="uid://bc0rue3ryy421" path="res://LevelBuilding/cave_tile_map.tscn" id="1_n1j0q"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c6kads1wpyhqi" path="res://Actors/Collectables/Lantern.tscn" id="3_lxww2"]
 [ext_resource type="Texture2D" uid="uid://okskvaq15lkj" path="res://Assets/Tiles/caveBackground.png" id="4_ryt32"]
 [ext_resource type="PackedScene" uid="uid://d1hvlcsmwpu5n" path="res://LevelBuilding/water_zone.tscn" id="5_insax"]
+[ext_resource type="AudioStream" uid="uid://jggxns43rano" path="res://Assets/Sounds/Background music/Background_music_1 (2).wav" id="7_u6hv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tfsq4"]
 size = Vector2(284.5, 82)
@@ -30,7 +31,6 @@ scale = Vector2(2.87305, 1.9873)
 texture = ExtResource("4_ryt32")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="WaterZone" parent="." instance=ExtResource("5_insax")]
@@ -49,3 +49,10 @@ shape = SubResource("RectangleShape2D_fex2m")
 [node name="That Guy" parent="Player" instance=ExtResource("2_gpkwu")]
 z_index = 1
 position = Vector2(48, -19)
+
+[node name="BackroundMusic1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_u6hv7")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="finished" from="BackroundMusic1" to="." method="_on_backround_music_1_finished"]

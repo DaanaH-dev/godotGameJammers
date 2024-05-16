@@ -26,8 +26,8 @@ var slidingFirePosition = Vector2(2,-8)
 var standingFirePosition = Vector2(-2,-17)
 
 
-const DEFAULTWATERBUFFER = 0.2
-var waterBuffer = 0.0
+const DEFAULTMUDBUFFER = 0.2
+var mudBuffer = 0.0
 
 
 #A variable that is set to true when you are in the lanterns safe area
@@ -45,7 +45,14 @@ var safe = false
 var tanAccel = 50.0
 var sliding = false
 var inWater = false
+
+var inMud = false
 #@onready var main = 
+
+
+#Vars for jump buffer
+const DEFAULTJUMPBUFFER = 0.1
+var jumpBufferTime = 0.0
 
 #var Cherry = preload("res://Collectibles/cherry.tscn")
 
@@ -58,6 +65,11 @@ func _physics_process(delta):
 		$Fire.position = slidingFirePosition
 	else:
 		$Fire.position = standingFirePosition
+		
+	if jumpBufferTime > 0.0:
+		jumpBufferTime -= delta
+	else:
+		jumpBufferTime = 0.0
 	
 	
 	if Input.is_action_just_pressed("Restart"):
@@ -69,14 +81,14 @@ func _physics_process(delta):
 	if inWater:
 		Game.timeToDie = 0.0
 	
-	if inWater and sliding:
-		waterBuffer = DEFAULTWATERBUFFER
-	elif not sliding and waterBuffer > 0.0:
-		waterBuffer -= delta
+	if inMud and sliding:
+		mudBuffer = DEFAULTMUDBUFFER
+	elif not sliding and mudBuffer > 0.0:
+		mudBuffer -= delta
 	else:
-		waterBuffer = 0.0
+		mudBuffer = 0.0
 		
-	if inWater and waterBuffer == 0.0:
+	if inMud and mudBuffer == 0.0:
 		Game.timeToDie = 0.0
 		
 		
@@ -121,12 +133,15 @@ func _physics_process(delta):
 	
 	#Applies gravity to character whilst in the air
 	if not is_on_floor():
-		if inWater and sliding:
+		if inMud and sliding:
 			velocity.y = 0			
-		elif inWater:
+		elif inMud or inWater:
 			velocity.y = 15 
 		else:
 			velocity.y += (gravity * delta) * 2.3
+			
+			
+
 		
 			
 			
@@ -141,9 +156,11 @@ func _physics_process(delta):
 			JUMP_RELEASED = true
 		else: 
 			JUMP_RELEASED = false
-			
+		
+		if is_on_floor():
+			jumpBufferTime = DEFAULTJUMPBUFFER
 		# Handle jump.
-		var canJump = is_on_floor() or (sliding and inWater)
+		var canJump = is_on_floor() or (sliding and inMud) or jumpBufferTime > 0.0
 		if Input.is_action_just_pressed("ui_accept") and canJump and not JUMP_RELEASED:
 			velocity.y = JUMP_VELOCITY
 			sliding = false
@@ -252,7 +269,7 @@ func health(delta):
 			$Fire.set_process_material(load("res://Assets/Particles/fire_50per.tres"))
 		if Game.timeToDie <= 2.5: 
 			$Fire.set_process_material(load("res://Assets/Particles/fire_almost_deadr.tres"))
-		print(Game.timeToDie)
+		#print(Game.timeToDie)
 		if Game.timeToDie > 0:
 			Game.timeToDie -= delta
 		else:
@@ -297,10 +314,16 @@ func _on_safe_detection_area_exited(area):
 func _on_danger_detection_area_entered(area):
 	if area.name == "WaterZone":
 		inWater = true
+	if area.name == "MudZone":
+		inMud = true
 
 
 
 func _on_danger_detection_area_exited(area):
 	if area.name == "WaterZone":
 		inWater = false
+	if area.name == "MudZone":
+		inMud = false
+		
+	
 		

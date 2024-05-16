@@ -1,16 +1,17 @@
-[gd_scene load_steps=54 format=3 uid="uid://h3gd0hgcdca"]
+[gd_scene load_steps=64 format=3 uid="uid://h3gd0hgcdca"]
 
-[ext_resource type="Script" path="res://Menu_That_Guy.gd" id="1_1ldmg"]
+[ext_resource type="Script" path="res://Actors/Menu/Menu_That_Guy.gd" id="1_1ldmg"]
 [ext_resource type="Texture2D" uid="uid://dwwiavsc2p3fe" path="res://Assets/Candle guy/candledeath.png" id="2_p86f4"]
 [ext_resource type="PackedScene" uid="uid://qjiya8xa16vy" path="res://Actors/Menu/menu_glob.tscn" id="2_sp0io"]
 [ext_resource type="Texture2D" uid="uid://hb2diremitrk" path="res://Assets/Candle guy/candlefall.png" id="3_e1ek8"]
-[ext_resource type="Texture2D" uid="uid://dqomyx7n7xx7c" path="res://Assets/Candle guy/candle.png" id="4_rfyp4"]
 [ext_resource type="Texture2D" uid="uid://ph7udbob8mur" path="res://Assets/Candle guy/candlejump.png" id="5_3rp88"]
 [ext_resource type="Texture2D" uid="uid://dcw1603yhpn3k" path="res://Assets/Candle guy/candlerun.png" id="6_d7m6b"]
 [ext_resource type="Texture2D" uid="uid://dlt2lf6vphk3j" path="res://Assets/Candle guy/candleshoot2.png" id="7_0nwmy"]
 [ext_resource type="Material" uid="uid://ctptvx476yjef" path="res://Assets/Particles/fire_full.tres" id="8_4ndkk"]
+[ext_resource type="Texture2D" uid="uid://d171351x54ylo" path="res://Assets/Candle guy/candleidle.png" id="8_c6puq"]
 [ext_resource type="Texture2D" uid="uid://dpksfo7vtns5v" path="res://Assets/Particles/white_square.png" id="9_yd6tt"]
 [ext_resource type="Script" path="res://Actors/Candle_Wick.gd" id="11_pm20w"]
+[ext_resource type="Texture2D" uid="uid://dxok22r873qyl" path="res://Assets/Candle guy/candleslide.png" id="12_2dxfa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkt8x"]
 radius = 5.0
@@ -76,6 +77,26 @@ region = Rect2(416, 0, 32, 32)
 atlas = ExtResource("2_p86f4")
 region = Rect2(448, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xg63"]
+atlas = ExtResource("8_c6puq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u53ix"]
+atlas = ExtResource("8_c6puq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in8uo"]
+atlas = ExtResource("8_c6puq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxfc3"]
+atlas = ExtResource("8_c6puq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juswm"]
+atlas = ExtResource("8_c6puq")
+region = Rect2(128, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixph4"]
 atlas = ExtResource("6_d7m6b")
 region = Rect2(0, 0, 32, 32)
@@ -140,7 +161,19 @@ region = Rect2(256, 0, 32, 32)
 atlas = ExtResource("7_0nwmy")
 region = Rect2(288, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pkq53"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sloxp"]
+atlas = ExtResource("12_2dxfa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dw2r"]
+atlas = ExtResource("12_2dxfa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj8ve"]
+atlas = ExtResource("12_2dxfa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuf7l"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -194,7 +227,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_e1ek8")
+"texture": ExtResource("5_3rp88")
 }],
 "loop": true,
 "name": &"Fall",
@@ -202,7 +235,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_rfyp4")
+"texture": SubResource("AtlasTexture_7xg63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u53ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in8uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxfc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juswm")
 }],
 "loop": true,
 "name": &"Idle",
@@ -210,7 +255,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_3rp88")
+"texture": ExtResource("3_e1ek8")
 }],
 "loop": true,
 "name": &"Jump",
@@ -272,6 +317,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"Shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sloxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dw2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj8ve")
+}],
+"loop": true,
+"name": &"Slide",
 "speed": 5.0
 }]
 
@@ -354,10 +413,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_elooq"]
@@ -473,6 +532,34 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
+[sub_resource type="Animation" id="Animation_rbwkm"]
+resource_name = "Slide"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Slide"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="Animation" id="Animation_jwl7c"]
 resource_name = "deadSad"
 length = 1.2
@@ -511,6 +598,7 @@ _data = {
 "RESET": SubResource("Animation_bcxi8"),
 "Run": SubResource("Animation_tfdi7"),
 "Shoot": SubResource("Animation_b5eja"),
+"Slide": SubResource("Animation_rbwkm"),
 "deadSad": SubResource("Animation_jwl7c")
 }
 
@@ -523,17 +611,6 @@ position = Vector2(0, -1.5)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_wkt8x")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -14)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_pkq53")
-animation = &"Run"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_42x0q")
-}
-
 [node name="Fire" type="GPUParticles2D" parent="."]
 position = Vector2(-2, -17)
 amount = 300
@@ -544,3 +621,14 @@ lifetime = 0.5
 [node name="ShootingPoint" type="Marker2D" parent="."]
 position = Vector2(2, 4)
 script = ExtResource("11_pm20w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tuf7l")
+animation = &"Run"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_42x0q")
+}

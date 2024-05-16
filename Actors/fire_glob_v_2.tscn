@@ -96,5 +96,4 @@ lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="GroundDetection" to="." method="_on_ground_detection_body_entered"]
