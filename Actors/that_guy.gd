@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const MOVEMENT_SPEED = 400.0
+const MOVEMENT_SPEED = 350.0
 const JUMP_VELOCITY = -650.0
 const GRAVITY_MODIFYER =  4.0
 const finalLightScale = 0.2
@@ -66,8 +66,8 @@ func _physics_process(delta):
 		Game.timeToDie = Game.DEFAULTTIMETODIE
 		
 	#Uncomment following if, if we want water to just kill, no sliding on water
-	#if inWater:
-		#Game.timeToDie = 0.0
+	if inWater:
+		Game.timeToDie = 0.0
 	
 	if inWater and sliding:
 		waterBuffer = DEFAULTWATERBUFFER
@@ -244,14 +244,15 @@ func health(delta):
 	var newScale = Game.lightTime/Game.DEFAULTLIGHTTIME
 	
 	if newScale <= finalLightScale and not safe:
-		if Game.timeToDie >= 12:
+		if Game.timeToDie >= 7.5:
 			$Fire.set_process_material(load("res://Assets/Particles/fire_full.tres"))
-		elif Game.timeToDie < 12:
+		if Game.timeToDie < 7.5:
 			$Fire.set_process_material(load("res://Assets/Particles/fire_75per.tres"))
-		elif Game.timeToDie < 9: 
+		if Game.timeToDie <= 5: 
 			$Fire.set_process_material(load("res://Assets/Particles/fire_50per.tres"))
-		elif Game.timeToDie < 6: 
+		if Game.timeToDie <= 2.5: 
 			$Fire.set_process_material(load("res://Assets/Particles/fire_almost_deadr.tres"))
+		print(Game.timeToDie)
 		if Game.timeToDie > 0:
 			Game.timeToDie -= delta
 		else:

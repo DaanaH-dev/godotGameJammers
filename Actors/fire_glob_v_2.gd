@@ -40,3 +40,4 @@ func _on_ground_detection_body_entered(body):
 		if($FireCollision != null):
 			$FireCollision.queue_free()
 		
+

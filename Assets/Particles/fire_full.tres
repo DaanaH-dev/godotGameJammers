@@ -19,8 +19,8 @@ point_count = 3
 curve = SubResource("Curve_b405s")
 
 [sub_resource type="Gradient" id="Gradient_3amtw"]
-offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.335404, 0.534162, 0.919255)
-colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 1, 0.797855, 0.701954, 1, 0.829586, 0.212915, 3.85046e-07, 1)
+offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.453416, 0.84472)
+colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 0.829586, 0.212915, 3.85046e-07, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_krivo"]
 gradient = SubResource("Gradient_3amtw")

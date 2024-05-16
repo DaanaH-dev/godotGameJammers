@@ -1,4 +1,4 @@
-[gd_resource type="ParticleProcessMaterial" load_steps=10 format=3 uid="uid://cdl8nf3ucehp"]
+[gd_resource type="ParticleProcessMaterial" load_steps=10 format=3 uid="uid://3utk086rw4vb"]
 
 [sub_resource type="Curve" id="Curve_jwpn0"]
 min_value = -360.0
@@ -19,8 +19,8 @@ point_count = 3
 curve = SubResource("Curve_b405s")
 
 [sub_resource type="Gradient" id="Gradient_3amtw"]
-offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.335404, 0.440994, 0.658385, 0.776398)
-colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 1, 0.797855, 0.701954, 1, 0.829586, 0.212915, 3.85046e-07, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.0745342, 0.10559, 0.15528, 0.279503, 0.478261, 0.875776)
+colors = PackedColorArray(0.983476, 0.471158, 0, 1, 0.574238, 0.906166, 1, 1, 0.970684, 0.664134, 1.15514e-06, 1, 1, 0.778, 0.473718, 1, 0.829586, 0.212915, 3.85046e-07, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_krivo"]
 gradient = SubResource("Gradient_3amtw")
@@ -41,12 +41,12 @@ angle_min = 360.0
 angle_max = 360.0
 angle_curve = SubResource("CurveTexture_fiyx1")
 direction = Vector3(0, -1, 0)
-spread = 5.0
-flatness = 1.0
+spread = 10.0
+flatness = 0.8
 initial_velocity_min = 15.0
 initial_velocity_max = 25.0
 angular_velocity_min = -91.17
-angular_velocity_max = 720.0
+angular_velocity_max = 49.69
 angular_velocity_curve = SubResource("CurveTexture_n24mj")
 directional_velocity_min = 0.0
 directional_velocity_max = 0.0
