@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsay275u1m2ju"]
+[gd_scene load_steps=11 format=3 uid="uid://bsay275u1m2ju"]
 
 [ext_resource type="Script" path="res://level_1.gd" id="1_hdjqq"]
 [ext_resource type="PackedScene" uid="uid://bc0rue3ryy421" path="res://LevelBuilding/cave_tile_map.tscn" id="1_n1j0q"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://okskvaq15lkj" path="res://Assets/Tiles/caveBackground.png" id="4_ryt32"]
 [ext_resource type="PackedScene" uid="uid://d1hvlcsmwpu5n" path="res://LevelBuilding/water_zone.tscn" id="5_insax"]
 [ext_resource type="AudioStream" uid="uid://jggxns43rano" path="res://Assets/Sounds/Background music/Background_music_1 (2).wav" id="7_u6hv7"]
+[ext_resource type="PackedScene" uid="uid://yf5nvq83vsb8" path="res://Actors/Menu/menu_lantern.tscn" id="8_ivb5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tfsq4"]
 size = Vector2(284.5, 82)
@@ -54,5 +55,8 @@ position = Vector2(48, -19)
 stream = ExtResource("7_u6hv7")
 volume_db = -15.0
 autoplay = true
+
+[node name="menu_Lantern" parent="." instance=ExtResource("8_ivb5j")]
+position = Vector2(915, 407)
 
 [connection signal="finished" from="BackroundMusic1" to="." method="_on_backround_music_1_finished"]

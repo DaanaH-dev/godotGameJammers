@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0jmd1gxniig8"]
+[gd_scene load_steps=12 format=3 uid="uid://c0jmd1gxniig8"]
 
 [ext_resource type="Script" path="res://main_screen.gd" id="1_4u18e"]
 [ext_resource type="Script" path="res://Play.gd" id="1_587ye"]
 [ext_resource type="PackedScene" uid="uid://bc0rue3ryy421" path="res://LevelBuilding/cave_tile_map.tscn" id="1_tof4q"]
 [ext_resource type="Script" path="res://Exit.gd" id="2_r3wku"]
+[ext_resource type="Theme" uid="uid://dwyjb4jf3p6lu" path="res://Assets/ButtonTheme.tres" id="3_8ovxm"]
 [ext_resource type="Texture2D" uid="uid://okskvaq15lkj" path="res://Assets/Tiles/caveBackground.png" id="4_7s7ss"]
 [ext_resource type="Texture2D" uid="uid://b76kfu7llv8us" path="res://Assets/WickTitleArt.png" id="4_j21h1"]
 [ext_resource type="PackedScene" uid="uid://yf5nvq83vsb8" path="res://Actors/Menu/menu_lantern.tscn" id="4_ou5pb"]
+[ext_resource type="StyleBox" uid="uid://ci676juvf1wkf" path="res://Assets/ButtonBackground.tres" id="4_uyp7o"]
 [ext_resource type="PackedScene" uid="uid://h3gd0hgcdca" path="res://Actors/Menu/menu_that_guy.tscn" id="5_3mdxu"]
 [ext_resource type="AudioStream" uid="uid://dwramkg0tkyyk" path="res://Assets/Sounds/Background music/MenuMusic.wav" id="9_hrmgq"]
 
@@ -26,17 +28,29 @@ layer = 2
 
 [node name="Play" type="Button" parent="UI"]
 offset_left = 337.0
-offset_top = 134.0
+offset_top = 254.0
 offset_right = 815.0
-offset_bottom = 303.0
+offset_bottom = 423.0
+theme = ExtResource("3_8ovxm")
+theme_override_styles/normal = ExtResource("4_uyp7o")
+theme_override_styles/hover = ExtResource("4_uyp7o")
+theme_override_styles/pressed = ExtResource("4_uyp7o")
+theme_override_styles/disabled = ExtResource("4_uyp7o")
+theme_override_styles/focus = ExtResource("4_uyp7o")
 text = "Play"
 script = ExtResource("1_587ye")
 
 [node name="Exit" type="Button" parent="UI"]
 offset_left = 337.0
-offset_top = 345.0
+offset_top = 448.0
 offset_right = 815.0
-offset_bottom = 514.0
+offset_bottom = 617.0
+theme = ExtResource("3_8ovxm")
+theme_override_styles/normal = ExtResource("4_uyp7o")
+theme_override_styles/hover = ExtResource("4_uyp7o")
+theme_override_styles/pressed = ExtResource("4_uyp7o")
+theme_override_styles/disabled = ExtResource("4_uyp7o")
+theme_override_styles/focus = ExtResource("4_uyp7o")
 text = "Exit
 "
 script = ExtResource("2_r3wku")
