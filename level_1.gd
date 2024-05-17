@@ -19,5 +19,8 @@ func _on_backround_music_1_finished():
 
 
 func _on_end_of_level_body_entered(body):
+	#Game.currentScene = "res://level_2.tscn"
 	if body.get_parent().name == "Player":
+		Game.currentScene = "res://level_2.tscn"
+		print("End of lvl: ", " ", Game.currentScene)
 		get_tree().change_scene_to_file( "res://level_2.tscn")

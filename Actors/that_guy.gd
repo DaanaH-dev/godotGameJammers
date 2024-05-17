@@ -73,6 +73,7 @@ func _physics_process(delta):
 	
 	
 	if Input.is_action_just_pressed("Restart"):
+		print(Game.currentScene)
 		get_tree().change_scene_to_file(Game.currentScene)
 		Game.lightTime = Game.DEFAULTLIGHTTIME
 		Game.timeToDie = Game.DEFAULTTIMETODIE

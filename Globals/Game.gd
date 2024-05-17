@@ -11,6 +11,6 @@ var lightTime := DEFAULTLIGHTTIME
 const DEFAULTTIMETODIE := 10.0
 var timeToDie := DEFAULTTIMETODIE
 
-
+#Set to zero so we can update
 var currentScene
 
