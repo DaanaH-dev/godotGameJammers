@@ -8,11 +8,11 @@ var stopMoving = false
 @onready var contactEffect = $Explosion
 @onready var animation = $AnimatedSprite2D
 
-const LIGHTMULTIPLIER = 15
+const LIGHTMULTIPLIER = 5
 
 const TIMETOSHRINK = 1.5
 
-var timeBeforeDespawn = 5.0
+var timeBeforeDespawn = 1.0
 
 var newScale
 # Called when the node enters the scene tree for the first time.

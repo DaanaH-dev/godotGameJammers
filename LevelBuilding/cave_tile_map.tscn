@@ -380,4 +380,5 @@ sources/3 = SubResource("TileSetAtlasSource_gkktt")
 
 [node name="caveTileMap" type="TileMap"]
 tile_set = SubResource("TileSet_i5cvm")
+rendering_quadrant_size = 32
 format = 2

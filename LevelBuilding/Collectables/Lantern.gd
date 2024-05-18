@@ -2,7 +2,7 @@ extends Sprite2D
 
 
 @onready var anim = get_node("AnimatedSprite2D")
-const lightSize = 10
+const lightSize = 5
 @onready var light = get_node("PointLight2D")
 var captured = false
 

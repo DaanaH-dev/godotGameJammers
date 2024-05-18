@@ -4,8 +4,8 @@ extends CharacterBody2D
 const MOVEMENT_SPEED = 350.0
 const JUMP_VELOCITY = -650.0
 const GRAVITY_MODIFYER =  4.0
-const finalLightScale = 0.2
-const lightTextureMultiplier = 15
+const finalLightScale = 0.1
+const lightTextureMultiplier = 10 # 15
 const shootAnimTime = 1.3
 
 const SLIDING_SPEED = 600.0
@@ -58,6 +58,12 @@ var jumpBufferTime = 0.0
 
 func _ready():
 	anim.play("Idle")
+	var tilemap_rect = get_parent().get_parent().get_node("caveTileMap").get_used_rect()
+	var tilemap_cell_size = get_parent().get_parent().get_node("caveTileMap").tile_set.tile_size
+	$Camera2D.limit_left = tilemap_rect.position.x * tilemap_cell_size.x
+	$Camera2D.limit_right = tilemap_rect.end.x * tilemap_cell_size.x
+	$Camera2D.limit_top = tilemap_rect.position.y * tilemap_cell_size.y
+	$Camera2D.limit_bottom = tilemap_rect.end.y * tilemap_cell_size.y
 
 func _physics_process(delta):
 	
