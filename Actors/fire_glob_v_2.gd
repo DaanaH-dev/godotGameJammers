@@ -12,7 +12,7 @@ const LIGHTMULTIPLIER = 5
 
 const TIMETOSHRINK = 1.5
 
-var timeBeforeDespawn = 1.0
+var timeBeforeDespawn = 2.0
 
 var newScale
 # Called when the node enters the scene tree for the first time.

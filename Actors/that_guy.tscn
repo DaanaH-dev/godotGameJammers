@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://wwppebyk0cta"]
+[gd_scene load_steps=68 format=3 uid="uid://wwppebyk0cta"]
 
 [ext_resource type="Script" path="res://Actors/that_guy.gd" id="1_1nhrw"]
 [ext_resource type="PackedScene" uid="uid://bnsy2vgjweggv" path="res://Actors/fire_glob_v_2.tscn" id="2_sgchl"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dlt2lf6vphk3j" path="res://Assets/Candle guy/candleshoot2.png" id="8_aolxm"]
 [ext_resource type="Texture2D" uid="uid://dxok22r873qyl" path="res://Assets/Candle guy/candleslide.png" id="9_3dylj"]
 [ext_resource type="Material" uid="uid://ctptvx476yjef" path="res://Assets/Particles/fire_full.tres" id="11_wc1ug"]
+[ext_resource type="AudioStream" uid="uid://b7o26gfkbpsdm" path="res://Assets/Sounds/Sound effect/Fire igniting.wav" id="14_iktvs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5j62"]
 radius = 5.0
@@ -629,7 +630,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.308, 1.308)
 limit_left = -10000
 limit_top = -10000
 limit_right = 10000
@@ -660,6 +661,9 @@ shape = SubResource("RectangleShape2D_do4a8")
 
 [node name="dangerSquare" type="CollisionShape2D" parent="DangerDetection"]
 shape = SubResource("RectangleShape2D_886gt")
+
+[node name="flameSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_iktvs")
 
 [connection signal="area_entered" from="SafeDetection" to="." method="_on_safe_detection_area_entered"]
 [connection signal="area_exited" from="SafeDetection" to="." method="_on_safe_detection_area_exited"]
