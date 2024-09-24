@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 
 const MOVEMENT_SPEED = 350.0
-const JUMP_VELOCITY = -650.0
+const JUMP_VELOCITY = -650.0 # 650
 const GRAVITY_MODIFYER =  4.0
-const finalLightScale = 0.2
-const lightTextureMultiplier = 15
+const finalLightScale = 0.1
+const lightTextureMultiplier = 10 # 15
 const shootAnimTime = 1.3
 
 const SLIDING_SPEED = 600.0
@@ -28,7 +28,6 @@ var standingFirePosition = Vector2(-2,-17)
 
 const DEFAULTMUDBUFFER = 0.2
 var mudBuffer = 0.0
-
 
 #A variable that is set to true when you are in the lanterns safe area
 var safe = false
@@ -54,10 +53,20 @@ var inMud = false
 const DEFAULTJUMPBUFFER = 0.1
 var jumpBufferTime = 0.0
 
+var jumpBuffer = 0.0
+
+#var flameSound = preload("res://Assets/Sounds/Sound effect/Fire igniting.wav")
+
 #var Cherry = preload("res://Collectibles/cherry.tscn")
 
 func _ready():
 	anim.play("Idle")
+	var tilemap_rect = get_parent().get_parent().get_node("caveTileMap").get_used_rect()
+	var tilemap_cell_size = get_parent().get_parent().get_node("caveTileMap").tile_set.tile_size
+	$Camera2D.limit_left = tilemap_rect.position.x * tilemap_cell_size.x
+	$Camera2D.limit_right = tilemap_rect.end.x * tilemap_cell_size.x
+	$Camera2D.limit_top = tilemap_rect.position.y * tilemap_cell_size.y
+	$Camera2D.limit_bottom = tilemap_rect.end.y * tilemap_cell_size.y
 
 func _physics_process(delta):
 	
@@ -162,7 +171,12 @@ func _physics_process(delta):
 			jumpBufferTime = DEFAULTJUMPBUFFER
 		# Handle jump.
 		var canJump = is_on_floor() or (sliding and inMud) or jumpBufferTime > 0.0
-		if Input.is_action_just_pressed("ui_accept") and canJump and not JUMP_RELEASED:
+		if Input.is_action_just_pressed("ui_accept"):
+			jumpBuffer = 0.1
+		jumpBuffer -= delta
+		#if (Input.is_action_just_pressed("ui_accept") or jumpBuffer > 0) and canJump and not JUMP_RELEASED:
+		if jumpBuffer > 0 and canJump and not JUMP_RELEASED:
+			jumpBuffer = 0.0
 			velocity.y = JUMP_VELOCITY
 			sliding = false
 			
@@ -249,6 +263,9 @@ func baseLight(delta):
 	
 func shoot():
 	
+	# play sfx
+	$flameSound.play(0.5)
+	
 	var b = Flame.instantiate()
 	owner.add_child(b)
 	b.position = position + get_node("ShootingPoint").position
@@ -285,6 +302,13 @@ func health(delta):
 		anim.queue("deadSad")
 		$Fire.set_emitting(false)
 		#THEN SOME SORT OF DEATH SEQUENCE
+		# Pause for 1 seconds
+		await get_tree().create_timer(1.0).timeout
+		# code for restarting
+		print(Game.currentScene)
+		get_tree().change_scene_to_file(Game.currentScene)
+		Game.lightTime = Game.DEFAULTLIGHTTIME
+		Game.timeToDie = Game.DEFAULTTIMETODIE
 		
 
 func movingRight():

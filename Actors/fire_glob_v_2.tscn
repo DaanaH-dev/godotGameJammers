@@ -75,7 +75,7 @@ sprite_frames = SubResource("SpriteFrames_jwom2")
 animation = &"Flying"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(2, -39)
+position = Vector2(2, -20)
 blend_mode = 2
 texture = ExtResource("3_t2rra")
 texture_scale = 15.0
